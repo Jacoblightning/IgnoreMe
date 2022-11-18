@@ -24,7 +24,6 @@ def returnhelper(day, time):
     return [i for i in Allteach if i not in Array[day][time]]
 
 
-# [i for i in Allteach if i not in Array["Monday"]["1:25"]]
 teachers = \
     {
         'subject': [
@@ -53,7 +52,7 @@ Array = \
                     retappend(
                         retappend(
                             retappend(
-                                subs[:2],
+                                subs[:3],
                                 teachers["Music"]),
                             teachers["Handwork"][0]),
                         teachers["Math"]),
@@ -104,7 +103,7 @@ Array = \
                         teachers["Movement"]),
                     teachers["Music"]),
                 eur(
-                    subs[7])) + subs[2:3]  # TWO Eurythmys?
+                    subs[7])) + subs[2:4]  # TWO Eurythmys?
         },
         'Tuesday': {
             '8:30': subs,
@@ -115,11 +114,11 @@ Array = \
                             retappend(
                                 retappend(
                                     retappend(
-                                        teachers['subject'][0],
-                                        teachers['subject'][3]
+                                        subs[0],
+                                        subs[3]
                                     ),
                                     teachers['Spanish']),
-                                teachers['subject'][7]),
+                                subs[7]),
                             teachers['Farming']),
                         eur(teachers['Handwork'][0])),
                     teachers['Movement']),
@@ -130,23 +129,99 @@ Array = \
                         retappend(
                             retappend(
                                 retappend(
-                                    teachers['subject'][3:4],
-                                    eur(teachers['subject'][6])
+                                    subs[3:5],
+                                    eur(subs[6])
                                 ),
                                 teachers['Math']),
                             teachers['Movement']),
                         teachers['Farming']),
                     teachers['Spanish']),
                 eur(teachers['Handwork'][0])),
-            '1:25': '',
-            '2:15': ''
+            '1:25': retappend(
+                retappend(
+                    retappend(
+                        retappend(
+                            special,
+                            teachers['Eurythmy']
+                        ),
+                        teachers['Spanish']),
+                    subs[1]),
+                teachers['Movement']),
+            '2:15': retappend(
+                retappend(
+                    retappend(
+                        retappend(
+                            special,
+                            subs[1]
+                        ),
+                        eur(
+                            subs[2]
+                        )),
+                    teachers['Music']),
+                teachers['Movement'])
         },
         'Wednesday': {
             '8:30': subs,
-            '11:05': '',
-            '11:55': '',
-            '1:25': '',
-            '2:15': ''
+            '11:05': retappend(
+                retappend(
+                    retappend(
+                        retappend(
+                            retappend(
+                                retappend(
+                                    retappend(
+                                        teachers['Handwork'][0],
+                                        subs[0]
+                                    ),
+                                    teachers['Movement']),
+                                teachers['Music']),
+                            teachers['Farming']),
+                        teachers['Math']),
+                    subs[6]),
+                teachers['Spanish']),
+            '11:55': retappend(
+                retappend(
+                    retappend(
+                        retappend(
+                            retappend(
+                                retappend(
+                                    retappend(
+                                        teachers['Handwork'][0],
+                                        teachers['Movement']
+                                    ),
+                                    subs[2]),
+                                teachers['Spanish']),
+                            teachers['Farming']),
+                        "Ms. Kenteti"),
+                    teachers['Math']),
+                subs[7]),
+            '1:25': retappend(
+                retappend(
+                    retappend(
+                        retappend(
+                            retappend(
+                                retappend(
+                                    retappend(
+                                        [teachers['Handwork'], subs[2]],
+                                        teachers['Spanish']
+                                    ),
+                                    subs[0]),
+                                teachers['Farming']),
+                            teachers['Music']),
+                        eur(
+                            "Ms. Kenteti"
+                        )),
+                    teachers['Movement']),
+                teachers['Math']),
+            '2:15': retappend(
+                retappend(
+                    retappend(
+                        retappend(
+                            retappend(
+                                retappend(
+                                    retappend(
+                                        subs[:2],
+
+                                    )))))))
         },
         'Thursday': {
             '8:30': subs,
