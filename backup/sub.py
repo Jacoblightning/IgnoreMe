@@ -384,154 +384,136 @@ def flip():
     label['text'] = 'Eurythmy is active.' if EURYTHMY else 'Eurythmy is inactive.'
 
 
-def createwindow():
-    global window, frame_a, frame_b, frame_c, frame_d, frame_e, frame_f, mainframe
-    window = tk.Tk()
-    frame_a = tk.Frame(master=window)
-    frame_b = tk.Frame(master=window)
-    frame_c = tk.Frame(master=window)
-    frame_d = tk.Frame(master=window)
-    frame_e = tk.Frame(master=window)
-    frame_f = tk.Frame(master=window)
-    mainframe = tk.Frame(master=window)
-
-
-def dayandtime():
-    global framesday, framestime, buttonstime, buttonsday
-    # noinspection SpellCheckingInspection
-    framesday = {
-        'mon': tk.Frame(master=window),
-        'tues': tk.Frame(master=window),
-        'wed': tk.Frame(master=window),
-        'thurs': tk.Frame(master=window),
-        'fri': tk.Frame(master=window)
-    }
-    # noinspection SpellCheckingInspection
-    framestime = {
-        '8:30': tk.Frame(master=window),
-        '11:05': tk.Frame(master=window),
-        '11:55': tk.Frame(master=window),
-        '1:25': tk.Frame(master=window),
-        '2:15': tk.Frame(master=window)
-    }
-    buttonstime = {
-        '8:30': tk.Button(
-            master=framestime['8:30'],
-            text='8:30',
-            width=25,
-            command=partial(settime, '8:30')
-        ),
-        '11:05': tk.Button(
-            master=framestime['11:05'],
-            text='11:05',
-            width=25,
-            command=partial(settime, '11:05')
-        ),
-        '11:55': tk.Button(
-            master=framestime['11:55'],
-            text='11:55',
-            width=25,
-            command=partial(settime, '11:55'),
-        ),
-        '1:25': tk.Button(
-            master=framestime['1:25'],
-            text='1:25',
-            width=25,
-            command=partial(settime, '1:25')
-        ),
-        '2:15': tk.Button(
-            master=framestime['2:15'],
-            text='2:15',
-            width=25,
-            command=partial(settime, '2:15')
-        )}
-    # noinspection SpellCheckingInspection
-    buttonsday = {
-        'Mon': tk.Button(
-            master=framesday['mon'],
-            text='Monday',
-            width=25,
-            command=partial(setday, 'Monday')
-        ),
-        'Tues': tk.Button(
-            master=framesday['tues'],
-            text='Tuesday',
-            width=25,
-            command=partial(setday, 'Tuesday')
-        ),
-        'Wed': tk.Button(
-            master=framesday['wed'],
-            text='Wednesday',
-            width=25,
-            command=partial(setday, 'Wednesday'),
-        ),
-        'Thurs': tk.Button(
-            master=framesday['thurs'],
-            text='Thursday',
-            width=25,
-            command=partial(setday, 'Thursday')
-        ),
-        'Fri': tk.Button(
-            master=framesday['fri'],
-            text='Friday',
-            width=25,
-            command=partial(setday, 'Friday')
-        )}
-
-
-def pac():
-    button = tk.Button(
-        master=frame_a,
-        text='Deactivate Eurythmy' if EURYTHMY else 'Activate Eurythmy',
+window = tk.Tk()
+frame_a = tk.Frame(master=window)
+frame_b = tk.Frame(master=window)
+frame_c = tk.Frame(master=window)
+frame_d = tk.Frame(master=window)
+frame_e = tk.Frame(master=window)
+frame_f = tk.Frame(master=window)
+mainframe = tk.Frame(master=window)
+# noinspection SpellCheckingInspection
+framesday = {
+    'mon': tk.Frame(master=window),
+    'tues': tk.Frame(master=window),
+    'wed': tk.Frame(master=window),
+    'thurs': tk.Frame(master=window),
+    'fri': tk.Frame(master=window)
+}
+# noinspection SpellCheckingInspection
+framestime = {
+    '8:30': tk.Frame(master=window),
+    '11:05': tk.Frame(master=window),
+    '11:55': tk.Frame(master=window),
+    '1:25': tk.Frame(master=window),
+    '2:15': tk.Frame(master=window)
+}
+button = tk.Button(
+    master=frame_a,
+    text='Deactivate Eurythmy' if EURYTHMY else 'Activate Eurythmy',
+    width=25,
+    command=flip
+)
+# noinspection SpellCheckingInspection
+buttonstime = {
+    '8:30': tk.Button(
+        master=framestime['8:30'],
+        text='8:30',
         width=25,
-        command=flip
-    )
-    for i in list(buttonsday.values()):
-        i.pack()
-    for i in list(buttonstime.values()):
-        i.pack()
-    button.pack()
-    # noinspection SpellCheckingInspection
-    calculatebutton = tk.Button(
-        master=frame_e,
-        text='Calculate substitutes available for NONE at NONE',
-        width=55,
-        command=calculate
-    )
-    calculatebutton.pack()
-    label = tk.Label(master=frame_b, text='Eurythmy is inactive.')
-    label.pack()
-    # noinspection SpellCheckingInspection
-    seltime = tk.Label(master=frame_d, text='Current selected time is NONE')
-    # noinspection SpellCheckingInspection
-    selday = tk.Label(master=frame_c, text='Current selected day is NONE')
-    selday.pack()
-    seltime.pack()
-    # noinspection SpellCheckingInspection
-    subslabel = tk.Label(master=frame_f, text='')
-    # noinspection SpellCheckingInspection
-    mainlabel = tk.Label(master=mainframe, text='')
-    mainlabel.pack()
-    subslabel.pack()
-    frame_a.grid(row=0, column=2)
-    frame_b.grid(row=1, column=2)
-    for count, frame in enumerate(list(framesday.values())):
-        frame.grid(row=3, column=count)
-    frame_c.grid(row=4, column=2)
-    for count, frame in enumerate(list(framestime.values())):
-        frame.grid(row=5, column=count)
-    frame_d.grid(row=6, column=2)
-    frame_e.grid(row=7, column=1, columnspan=3)
-    frame_f.grid(row=8, column=0)
-    mainframe.grid(row=9, column=0, columnspan=3)
-    window.mainloop()
-
-
-def main():
-    createwindow()
-    dayandtime()
-    pac()
-
-
-if __name__ == "__main__":
-    main()
+        command=partial(settime, '8:30')
+    ),
+    '11:05': tk.Button(
+        master=framestime['11:05'],
+        text='11:05',
+        width=25,
+        command=partial(settime, '11:05')
+    ),
+    '11:55': tk.Button(
+        master=framestime['11:55'],
+        text='11:55',
+        width=25,
+        command=partial(settime, '11:55'),
+    ),
+    '1:25': tk.Button(
+        master=framestime['1:25'],
+        text='1:25',
+        width=25,
+        command=partial(settime, '1:25')
+    ),
+    '2:15': tk.Button(
+        master=framestime['2:15'],
+        text='2:15',
+        width=25,
+        command=partial(settime, '2:15')
+    )}
+# noinspection SpellCheckingInspection
+buttonsday = {
+    'Mon': tk.Button(
+        master=framesday['mon'],
+        text='Monday',
+        width=25,
+        command=partial(setday, 'Monday')
+    ),
+    'Tues': tk.Button(
+        master=framesday['tues'],
+        text='Tuesday',
+        width=25,
+        command=partial(setday, 'Tuesday')
+    ),
+    'Wed': tk.Button(
+        master=framesday['wed'],
+        text='Wednesday',
+        width=25,
+        command=partial(setday, 'Wednesday'),
+    ),
+    'Thurs': tk.Button(
+        master=framesday['thurs'],
+        text='Thursday',
+        width=25,
+        command=partial(setday, 'Thursday')
+    ),
+    'Fri': tk.Button(
+        master=framesday['fri'],
+        text='Friday',
+        width=25,
+        command=partial(setday, 'Friday')
+    )}
+for i in list(buttonsday.values()):
+    i.pack()
+for i in list(buttonstime.values()):
+    i.pack()
+button.pack()
+# noinspection SpellCheckingInspection
+calculatebutton = tk.Button(
+    master=frame_e,
+    text='Calculate substitutes available for NONE at NONE',
+    width=55,
+    command=calculate
+)
+calculatebutton.pack()
+label = tk.Label(master=frame_b, text='Eurythmy is inactive.')
+label.pack()
+# noinspection SpellCheckingInspection
+seltime = tk.Label(master=frame_d, text='Current selected time is NONE')
+# noinspection SpellCheckingInspection
+selday = tk.Label(master=frame_c, text='Current selected day is NONE')
+selday.pack()
+seltime.pack()
+# noinspection SpellCheckingInspection
+subslabel = tk.Label(master=frame_f, text='')
+# noinspection SpellCheckingInspection
+mainlabel = tk.Label(master=mainframe, text='')
+mainlabel.pack()
+subslabel.pack()
+frame_a.grid(row=0, column=2)
+frame_b.grid(row=1, column=2)
+for count, frame in enumerate(list(framesday.values())):
+    frame.grid(row=3, column=count)
+frame_c.grid(row=4, column=2)
+for count, frame in enumerate(list(framestime.values())):
+    frame.grid(row=5, column=count)
+frame_d.grid(row=6, column=2)
+frame_e.grid(row=7, column=1, columnspan=3)
+frame_f.grid(row=8, column=0)
+mainframe.grid(row=9, column=0, columnspan=3)
+window.mainloop()
